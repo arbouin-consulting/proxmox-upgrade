@@ -6,7 +6,7 @@ test () {
 
 upgrade () {
   echo "Remove package systemd-boot"
-  apt remove --purge systemd-boot
+  apt remove --purge systemd-boot linux-image-amd64
   apt update
   apt dist-upgrade -y
   apt autoremove -y
