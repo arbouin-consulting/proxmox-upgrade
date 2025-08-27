@@ -8,7 +8,7 @@ upgrade () {
   echo "Remove package systemd-boot"
   apt remove --purge systemd-boot
   apt update
-  apt dist-upgrade
+  apt dist-upgrade -y
   apt autoremove -y
   pveversion
 
