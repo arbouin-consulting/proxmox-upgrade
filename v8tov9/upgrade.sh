@@ -21,12 +21,21 @@ Suites: trixie
 Components: no-subscription
 Signed-By: /usr/share/keyrings/proxmox-archive-keyring.gpg
 EOF
+  cat > /etc/apt/sources.list.d/ceph-enterprise.sources << EOF
+Types: deb
+URIs: https://enterprise.proxmox.com/debian/ceph-squid
+Suites: trixie
+Components: enterprise
+Signed-By: /usr/share/keyrings/proxmox-archive-keyring.gpg
+Enabled: false
+EOF
   cat > /etc/apt/sources.list.d/pve-enterprise.sources << EOF
 Types: deb
 URIs: https://enterprise.proxmox.com/debian/pve
 Suites: trixie
 Components: pve-enterprise
 Signed-By: /usr/share/keyrings/proxmox-archive-keyring.gpg
+Enabled: false
 EOF
   cat > /etc/apt/sources.list.d/proxmox.sources << EOF
 Types: deb
@@ -35,6 +44,28 @@ Suites: trixie
 Components: pve-no-subscription
 Signed-By: /usr/share/keyrings/proxmox-archive-keyring.gpg
 EOF
+  cat > /etc/apt/sources.list.d/debian.sources << EOF
+# Modernized from /etc/apt/sources.list
+Types: deb
+URIs: http://ftp.fr.debian.org/debian/
+Suites: trixie
+Components: main contrib
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+
+# Modernized from /etc/apt/sources.list
+Types: deb
+URIs: http://ftp.fr.debian.org/debian/
+Suites: trixie-updates
+Components: main contrib
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+
+# Modernized from /etc/apt/sources.list
+Types: deb
+URIs: http://security.debian.org/
+Suites: trixie-security
+Components: main contrib
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+EOF
 
   echo "Clean old repository"
   rm -f /etc/apt/sources.list.d/ceph.list
@@ -42,7 +73,7 @@ EOF
   rm -f /etc/apt/sources.list.d/pve-enterprise.list
 
   apt update
-
+  apt policy
   apt dist-upgrade -y
 }
 
