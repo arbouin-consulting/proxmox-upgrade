@@ -14,12 +14,18 @@ upgrade () {
 
   echo "Change and create new repository of bookworm to trixie"
   sed -i 's/bookworm/trixie/g' /etc/apt/sources.list
-  sed -i 's/bookworm/trixie/g' /etc/apt/sources.list.d/pve-enterprise.list
   cat > /etc/apt/sources.list.d/ceph.sources << EOF
 Types: deb
 URIs: http://download.proxmox.com/debian/ceph-squid
 Suites: trixie
 Components: no-subscription
+Signed-By: /usr/share/keyrings/proxmox-archive-keyring.gpg
+EOF
+  cat > /etc/apt/sources.list.d/pve-enterprise.sources << EOF
+Types: deb
+URIs: https://enterprise.proxmox.com/debian/pve
+Suites: trixie
+Components: pve-enterprise
 Signed-By: /usr/share/keyrings/proxmox-archive-keyring.gpg
 EOF
   cat > /etc/apt/sources.list.d/proxmox.sources << EOF
