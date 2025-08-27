@@ -5,12 +5,14 @@ test () {
 }
 
 upgrade () {
-  echo "Should the package be removed systemd-boot y/n"
-  read reponse
-  if [[ "$reponse" == "y" ]]
-  then
-      apt remove --purge systemd-boot
-  fi
+  while true; do
+    read -p "Should the package be removed systemd-boot y/n? " yn
+    case $yn in
+      [Yy]* ) apt remove --purge systemd-boot; break;;
+      [Nn]* ) break;;
+      * ) echo "Please answer yes or no.";;
+    esac
+  done
   apt update
   apt dist-upgrade
   apt autoremove -y
