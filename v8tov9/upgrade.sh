@@ -82,6 +82,7 @@ post-upgrade () {
   apt modernize-sources
   apt-get update
   apt-get dist-upgrade
+  apt-get autoremove -y
 }
 
 case $1 in
