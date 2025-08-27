@@ -71,6 +71,7 @@ EOF
   rm -f /etc/apt/sources.list.d/ceph.list
   rm -f /etc/apt/sources.list.d/pve-install-repo.list
   rm -f /etc/apt/sources.list.d/pve-enterprise.list
+  rm -f /etc/apt/sources.list
 
   apt-get update
   apt-get policy
