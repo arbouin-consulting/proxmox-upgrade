@@ -6,10 +6,10 @@ test () {
 
 upgrade () {
   echo "Remove package systemd-boot"
-  apt remove --purge systemd-boot linux-image-amd64 -y
-  apt update
-  apt dist-upgrade -y
-  apt autoremove -y
+  apt-get remove --purge systemd-boot linux-image-amd64 -y
+  apt-get update
+  apt-get dist-upgrade -y
+  apt-get autoremove -y
   pveversion
 
   echo "Change and create new repository of bookworm to trixie"
@@ -72,15 +72,15 @@ EOF
   rm -f /etc/apt/sources.list.d/pve-install-repo.list
   rm -f /etc/apt/sources.list.d/pve-enterprise.list
 
-  apt update
-  apt policy
-  apt dist-upgrade -y
+  apt-get update
+  apt-get policy
+  apt-get dist-upgrade -y
 }
 
 post-upgrade () {
   apt modernize-sources
-  apt update
-  apt dist-upgrade
+  apt-get update
+  apt-get dist-upgrade
 }
 
 case $1 in
