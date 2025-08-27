@@ -8,6 +8,13 @@ upgrade () {
   apt update
   apt dist-upgrade
   apt autoremove -y
+
+  echo "Should the package be removed systemd-boot y/n"
+  read reponse
+  if [[ "$reponse" == "y" ]]
+  then
+      apt remove --purge systemd-boot
+  fi
   pveversion
 
   sed -i 's/bookworm/trixie/g' /etc/apt/sources.list
