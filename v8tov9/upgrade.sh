@@ -75,7 +75,7 @@ EOF
 
   apt-get update
   apt-get policy
-  apt-get dist-upgrade -y
+  apt-get dist-upgrade -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y
 }
 
 post-upgrade () {
