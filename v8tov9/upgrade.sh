@@ -5,11 +5,12 @@ test () {
 }
 
 upgrade () {
-  while true; do
-    read -p "Should the package be removed systemd-boot y/n? " yn
-    case $yn in
-      [Yy]* ) apt remove --purge systemd-boot; break;;
-      [Nn]* ) break;;
+  echo "Should the package be removed systemd-boot y/n?"
+  select strictreply in "Yes" "No"; do
+    relaxedreply=${strictreply:-$REPLY}
+    case $relaxedreply in
+      Yes | yes | y )  apt remove --purge systemd-boot; break;;
+      No  | no  | n ) break;;
       * ) echo "Please answer yes or no.";;
     esac
   done
